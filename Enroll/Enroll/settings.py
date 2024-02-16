@@ -1,16 +1,16 @@
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-qmf_=%s$j7c((8)%z&rabg)i_p(lja=q24+s2&$-nzk8d9am%o"
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-import os
-
-# Application definition
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -57,14 +57,13 @@ WSGI_APPLICATION = "Enroll.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "Table",
-        "USER": "admin",
-        "PASSWORD": "admin@1234",
-        "HOST": "localhost",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
         "PORT": "3306",
     }
 }
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
