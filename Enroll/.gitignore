@@ -1,0 +1,4 @@
+.env
+Generate.py
+media/*
+db.sqlite3
